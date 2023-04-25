@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+    <EditText
+        android:id="@+id/editTextAlter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Alter"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/editTextWohnort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Wohnort"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+    <RadioGroup
+        android:id="@+id/RadioGroupType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <RadioButton
+            android:id="@+id/RadioButtonMannlich"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mannlich"/>
+
+        <RadioButton
+            android:id="@+id/RadioButtonWeiblich"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Weiblich"/>
+
+        <RadioButton
+            android:id="@+id/RadioButtonApache"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apache Attack Helicopter"/>
+
+    </RadioGroup>
+
+    <Switch
+        android:id="@+id/SwitchStudent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Student"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+    <Button
+        android:id="@+id/ButtonSave"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="zeige kontaktkarte"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+</LinearLayout>

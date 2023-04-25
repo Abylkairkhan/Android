@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home"
+    android:orientation="vertical"
+    android:background="#BFDCE5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#3E54AC">
+
+        <EditText
+            android:id="@+id/homeSearchTextView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/input_btn"
+            android:ems="10"
+            android:hint="Wrtite Book Name or ID"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/homeSearchBtn"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_bg"
+                android:text="Search"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/homeAddBtn"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_bg"
+                android:text="Add Book"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/homeASCBtn"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_bg"
+                android:text="ASC"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/homeDESCBtn"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_bg"
+                android:text="DESC"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/home_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+</LinearLayout>

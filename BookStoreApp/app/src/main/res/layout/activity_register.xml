@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Register"
+    android:orientation="vertical"
+    android:background="#3E54AC">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/logo"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EnjoyRead"
+            android:textSize="30dp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/white"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="350dp"
+            android:layout_height="300dp"
+            android:src="@drawable/img_2"/>
+
+        <EditText
+            android:id="@+id/usernameInputRegister"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:background="@drawable/text_bg"
+            android:layout_marginTop="10dp"
+            android:hint="Username"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="#fff"
+            android:paddingLeft="30dp"/>
+
+        <EditText
+            android:id="@+id/passwordInputRegister"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/text_bg"
+            android:hint="Password"
+            android:paddingLeft="30dp"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/passwordInputAdmin"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/text_bg"
+            android:hint="Password to Admin"
+            android:paddingLeft="30dp"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/registerBtn"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button_bg"
+            android:text="register"
+            android:textColor="#2196f3"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

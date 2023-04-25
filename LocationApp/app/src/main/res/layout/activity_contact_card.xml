@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/ContactImage"
+        android:layout_width="350dp"
+        android:layout_height="450dp"
+        tools:srcCompat="@tools:sample/avatars"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/TextViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Name:"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/TextViewAlter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Alter:"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/TextViewStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Status:"
+        android:textSize="16sp"/>
+
+    <ImageButton
+        android:id="@+id/ImageButtonLocation"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_location"/>
+
+</LinearLayout>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#BFDCE5"
+    tools:context=".Fragments.BookAddFragment">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="ADDING BOOK"
+            android:textColor="@color/black"
+            android:textSize="34sp"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="150dp">
+
+        <EditText
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:paddingLeft="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Title"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:background="@drawable/input_btn"/>
+
+        <EditText
+            android:id="@+id/descripText"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Description"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/input_btn"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:paddingLeft="10dp"/>
+
+        <EditText
+            android:id="@+id/costText"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:ems="10"
+            android:inputType="number"
+            android:layout_marginTop="140dp"
+            android:hint="Cost"
+            android:background="@drawable/input_btn"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:paddingLeft="10dp"/>
+
+        <Button
+            android:id="@+id/AddBookButton"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="ADD book"
+            android:layout_marginTop="210dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/button_bg"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+    </FrameLayout>
+
+</FrameLayout>

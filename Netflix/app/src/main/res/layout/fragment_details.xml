@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.details.DetailsFragment"
+    android:background="#656161">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_margin="10dp"
+        android:background="#232a32"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#232a32">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="140dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="20dp"
+                android:drawableLeft="@drawable/ic_date"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/archivo_bold"
+                android:text="Date"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/img"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/movie_adult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/archivo_bold"
+                android:text="Adult"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                app:drawableLeftCompat="@drawable/ic_adult"
+                android:drawablePadding="10dp"
+                app:layout_constraintStart_toStartOf="@+id/date"
+                app:layout_constraintTop_toBottomOf="@+id/date" />
+
+            <TextView
+                android:id="@+id/movie_vote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawableLeft="@drawable/ic_star"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/archivo_bold"
+                android:text="Vote"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                app:layout_constraintStart_toStartOf="@+id/movie_adult"
+                app:layout_constraintTop_toBottomOf="@+id/movie_adult" />
+
+            <TextView
+                android:id="@+id/movie_runtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Runtime"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                android:fontFamily="@font/archivo_bold"
+                app:drawableLeftCompat="@drawable/ic_runtime"
+                android:drawablePadding="10dp"
+                app:layout_constraintStart_toStartOf="@+id/movie_vote"
+                app:layout_constraintTop_toBottomOf="@+id/movie_vote" />
+
+            <TextView
+                android:id="@+id/movie_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/archivo_bold"
+                android:text="Status"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                app:drawableLeftCompat="@drawable/ic_status"
+                app:layout_constraintStart_toStartOf="@+id/movie_runtime"
+                app:layout_constraintTop_toBottomOf="@+id/movie_runtime" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        tools:layout_editor_absoluteX="1dp"
+        app:cardCornerRadius="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#232a32">
+
+            <TextView
+                android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="200dp"
+                android:gravity="center"
+                android:text="Loading..."
+                android:textColor="@color/white"
+                android:textSize="50dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/titleDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_title"
+                        android:fontFamily="@font/archivo_bold"
+                        android:text="Title"
+                        android:textColor="@color/white"
+                        android:textSize="24dp"/>
+
+                    <TextView
+                        android:id="@+id/overview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/archivo_bold"
+                        android:text="Overview"
+                        android:textColor="@color/white"
+                        android:textSize="24dp"/>
+
+                    <Button
+                        android:id="@+id/saveBtn"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        android:text="Save"
+                        android:textSize="18dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="15dp"
+                        android:textColor="@color/black"
+                        android:background="@drawable/button_bg"/>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
