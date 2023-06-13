@@ -7,6 +7,8 @@
     tools:context=".screens.details.DetailsFragment"
     android:background="#656161">
 
+    <include layout="@layout/part_result"/>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -108,10 +110,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/movie_runtime" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="10dp"
@@ -124,19 +126,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#232a32">
-
-            <TextView
-                android:id="@+id/loading"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="200dp"
-                android:gravity="center"
-                android:text="Loading..."
-                android:textColor="@color/white"
-                android:textSize="50dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -185,7 +174,6 @@
             </ScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

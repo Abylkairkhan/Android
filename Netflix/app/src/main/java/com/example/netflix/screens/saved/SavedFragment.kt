@@ -1,8 +1,6 @@
 package com.example.netflix.screens.saved
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,18 +11,14 @@ import com.example.netflix.R
 import com.example.netflix.databinding.FragmentSavedBinding
 import com.example.netflix.models.Movie
 import com.example.netflix.screens.details.DetailsViewModel
-import com.example.netflix.screens.home.MovieAdapter
+import com.example.netflix.adapters.MovieAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SavedFragment : Fragment(), MovieAdapter.Listener {
+class SavedFragment: Fragment(), MovieAdapter.Listener {
 
     private lateinit var binding: FragmentSavedBinding
-    private var vm = SavedViewModel()
-    private var dvm = DetailsViewModel()
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        vm.getSavedMovie(requireContext())
-    }
+    private val vm: SavedViewModel by viewModel()
+    private val dvm: DetailsViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

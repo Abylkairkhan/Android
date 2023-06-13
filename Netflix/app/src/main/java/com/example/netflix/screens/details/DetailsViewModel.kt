@@ -1,35 +1,28 @@
 package com.example.netflix.screens.details
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import com.example.netflix.R
+import com.example.netflix.utils.Result
 import com.example.netflix.Room.MainDB
 import com.example.netflix.models.Movie
-import com.example.netflix.request.Service
+import com.example.netflix.repository.IMovieRepository
+import com.example.netflix.utils.SuccessResult
+import com.example.netflix.utils.takeSuccess
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class DetailsViewModel: ViewModel() {
+class DetailsViewModel(private val movieRepository: IMovieRepository): ViewModel() {
 
-    private val service = Service()
     private lateinit var db: MainDB
     companion object{
-        var movie: MutableLiveData<Movie> = MutableLiveData<Movie>()
-        var loading: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
+        var movie: MutableLiveData<com.example.netflix.utils.Result<Movie>> = MutableLiveData<com.example.netflix.utils.Result<Movie>>()
         var type: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
     }
 
-    fun getMovie(): MutableLiveData<Movie>{
+    fun getMovie(): MutableLiveData<com.example.netflix.utils.Result<Movie>>{
         return movie
-    }
-
-    fun getLoading(): MutableLiveData<Boolean>{
-        return loading
     }
 
     fun getType(): MutableLiveData<Boolean>{
@@ -39,28 +32,25 @@ class DetailsViewModel: ViewModel() {
     fun saveMovie(context: Context) {
         db = MainDB.getDb(context)
         Thread{
-            db.getDao().insert(movie.value!!)
+            db.getDao().insert(movie.value.takeSuccess()!!)
         }.start()
     }
 
     fun deleteMovie(context: Context) {
         db = MainDB.getDb(context)
         Thread{
-            db.getDao().deleteMovieByID(movie.value?.id!!)
+            db.getDao().deleteMovieByID(movie.value.takeSuccess()!!.id!!)
         }.start()
     }
 
     fun passMovie(id: Int){
-        loading.value = true
         CoroutineScope(Dispatchers.IO).launch {
-            val data = service.getMovieByID(id)
-            movie.postValue(data)
-            loading.postValue(false)
+            movie.postValue( SuccessResult(movieRepository.getMovieByID(id) ))
         }
     }
 
     fun passMovie(_movie: Movie){
-        movie.value = _movie
+        movie.value = SuccessResult(_movie)
     }
 
     fun passType(t: Boolean){

@@ -57,7 +57,6 @@ class MainFragment : Fragment() {
         init()
         updateCard()
         requestWeatherAPI("Almaty")
-//        getLocation()
     }
 
     private fun parseWeatherData(data: String){
