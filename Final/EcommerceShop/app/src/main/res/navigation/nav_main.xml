@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/home3">
+
+    <fragment
+        android:id="@+id/basket2"
+        android:name="com.example.ecommerceshop.screens.home.Basket"
+        android:label="fragment_basket"
+        tools:layout="@layout/fragment_basket" />
+    <fragment
+        android:id="@+id/create2"
+        android:name="com.example.ecommerceshop.screens.home.Create"
+        android:label="fragment_create"
+        tools:layout="@layout/fragment_create" />
+    <fragment
+        android:id="@+id/genreItem"
+        android:name="com.example.ecommerceshop.screens.items.GenreItem"
+        android:label="fragment_genre_item"
+        tools:layout="@layout/fragment_genre_item" />
+    <fragment
+        android:id="@+id/home3"
+        android:name="com.example.ecommerceshop.screens.home.Home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home3_to_genreItem2"
+            app:destination="@id/genreItem" />
+        <action
+            android:id="@+id/action_home3_to_basket2"
+            app:destination="@id/basket2" />
+        <action
+            android:id="@+id/action_home3_to_create2"
+            app:destination="@id/create2" />
+        <action
+            android:id="@+id/action_home3_to_bookItem"
+            app:destination="@id/bookItem" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookItem"
+        android:name="com.example.ecommerceshop.screens.items.BookItem"
+        android:label="fragment_book_item"
+        tools:layout="@layout/fragment_book_item" />
+</navigation>

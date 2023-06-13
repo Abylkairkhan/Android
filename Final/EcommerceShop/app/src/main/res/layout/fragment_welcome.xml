@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".screens.login.Welcome">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:src="@drawable/paida_logo"
+        android:layout_width="250dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/prompt_black"-->
+<!--        android:text="MONGO"-->
+<!--        android:textColor="@color/dark_green"-->
+<!--        android:textSize="32dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/imageView"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/imageView"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/imageView" />-->
+
+    <Button
+        android:id="@+id/SignUpButton"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="350dp"
+        android:background="@drawable/custom_button1"
+        android:drawableStart="@drawable/mail_icon2"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/prompt_medium"
+        android:gravity="start|center_vertical"
+        android:paddingStart="90dp"
+        android:text="Sign Up"
+        android:textAllCaps="false"
+        android:textColor="@color/new_white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+<!--    <com.google.android.gms.common.SignInButton-->
+<!--        android:id="@+id/sign_in_button"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/SignUpButton"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/SignUpButton" />-->
+
+    <ImageView
+        android:id="@+id/SignUpGoogle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/google"
+        app:layout_constraintStart_toStartOf="@+id/SignUpButton"
+        app:layout_constraintTop_toBottomOf="@+id/SignUpButton" />
+
+    <ImageView
+        android:id="@+id/SignUpFacebook"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:src="@drawable/facebook"
+        app:layout_constraintStart_toEndOf="@+id/SignUpGoogle"
+        app:layout_constraintTop_toTopOf="@+id/SignUpGoogle" />
+
+    <ImageView
+        android:id="@+id/SignUpTwitter"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:src="@drawable/twitter"
+        app:layout_constraintStart_toEndOf="@+id/SignUpFacebook"
+        app:layout_constraintTop_toTopOf="@+id/SignUpFacebook" />
+
+    <TextView
+        android:id="@+id/LoginTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Already have an account? Login"
+        android:textSize="18dp"
+        android:fontFamily="@font/prompt_bold"
+        android:drawableRight="@drawable/arrow_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/new_black"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

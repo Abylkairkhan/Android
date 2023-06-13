@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="com.example.brawlstars.fragments.saved"
+        android:label="fragment_saved"
+        tools:layout="@layout/fragment_saved" >
+        <action
+            android:id="@+id/action_savedFragment_to_item"
+            app:destination="@id/item" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.brawlstars.fragments.home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_item"
+            app:destination="@id/item" />
+    </fragment>
+    <fragment
+        android:id="@+id/item"
+        android:name="com.example.brawlstars.fragments.item"
+        android:label="fragment_item"
+        tools:layout="@layout/fragment_item" />
+</navigation>

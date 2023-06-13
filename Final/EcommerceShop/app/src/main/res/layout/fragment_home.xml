@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.home.Home">
+
+    <EditText
+        android:id="@+id/searchEt"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/search_shape"
+        android:drawableStart="@drawable/search_vec"
+        android:drawablePadding="10dp"
+        android:hint="Search"
+        android:paddingHorizontal="10dp"
+        android:textColorHint="#C3C0C0"
+        app:layout_constraintEnd_toStartOf="@+id/search_img"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/search_img"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/search_vec"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sort_name"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@id/searchEt"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/search_shape"
+        android:text="A-Z"
+        android:textColor="#C3C0C0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchEt" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sort_page"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@id/searchEt"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/search_shape"
+        android:text="Page"
+        android:textAllCaps="false"
+        android:textColor="#C3C0C0"
+        app:layout_constraintStart_toEndOf="@+id/sort_name"
+        app:layout_constraintTop_toBottomOf="@+id/searchEt" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sort_year"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@id/searchEt"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/search_shape"
+        android:text="Year"
+        android:textAllCaps="false"
+        android:textColor="#C3C0C0"
+        app:layout_constraintStart_toEndOf="@+id/sort_page"
+        app:layout_constraintTop_toBottomOf="@+id/searchEt" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sort_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@id/searchEt"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/search_shape"
+        android:text="Rating"
+        android:textAllCaps="false"
+        android:textColor="#C3C0C0"
+        app:layout_constraintStart_toEndOf="@+id/sort_year"
+        app:layout_constraintTop_toTopOf="@+id/sort_year" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/genreRecView"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sort_year"
+        tools:listitem="@layout/genre_item"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bookRecView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/genreRecView"
+        tools:listitem="@layout/book_item"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
