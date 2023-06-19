@@ -1,5 +1,6 @@
 package com.example.netflix.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ class MovieAdapter(val listener: Listener): RecyclerView.Adapter<MovieAdapter.Mo
         var binding = MovieItemBinding.bind(item)
 
         fun bind(movie: Movie, listener: Listener) = with(binding){
+//            Log.d("MyLog", "https://image.tmdb.org/t/p/w600_and_h900_bestv2" + movie.poster_path)
             Picasso.get().load("https://image.tmdb.org/t/p/w600_and_h900_bestv2" + movie.poster_path).into(imageView)
             movieTitle.text = movie.title
             movieAdult.text = if(movie.adult) "Yes" else "No"

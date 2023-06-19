@@ -3,34 +3,31 @@ package com.example.netflix_compose.screens.NetworkMovieScreen
 import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.netflix_compose.screens.models.MovieNetworkScreenEvent
-import com.example.netflix_compose.screens.models.MovieNetworkScreenState
+import androidx.navigation.compose.rememberNavController
+import com.example.netflix_compose.screens.Additional.MovieNetworkScreenEvent
+import com.example.netflix_compose.screens.Additional.MovieNetworkScreenState
+import com.example.netflix_compose.ui.theme.Netflix_ComposeTheme
 
 @Composable
 fun MovieNetworkScreen(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     navController: NavController,
     viewModel: MovieScreenViewModel
 ){
-
     val state by viewModel.movieViewState.collectAsState()
-    Log.d("MyLog", "$state")
 
     when(state){
-        is MovieNetworkScreenState.ShowProgressBar -> {
-            Log.d("MyLog", "ShowProgressBar")
-            MovieLoading(viewModel)
-        }
+        is MovieNetworkScreenState.ShowProgressBar -> MovieLoading(viewModel)
 
-        is MovieNetworkScreenState.ShowListOfMovie -> MovieLoading(viewModel)
+        is MovieNetworkScreenState.ShowListOfMovie -> MovieList(viewModel)
 
         is MovieNetworkScreenState.ShowError -> MovieError(viewModel)
 
@@ -43,7 +40,6 @@ fun MovieNetworkScreen(
     LaunchedEffect(key1 = state, block = {
         viewModel.obtainEvent(event = MovieNetworkScreenEvent.EnterScreen)
     })
-
 }
 
 @Composable
@@ -51,7 +47,6 @@ private fun MovieLoading(viewModel: MovieScreenViewModel){
     Column {
         Text(text = "ShowProgressBar")
         Button(onClick = {
-            Log.d("MyLog", "Click")
             viewModel.obtainEvent(event = MovieNetworkScreenEvent.NavigateToDetails(1)) }
         ) {
             Text(text = "Navigate to Details")
@@ -61,13 +56,23 @@ private fun MovieLoading(viewModel: MovieScreenViewModel){
 
 @Composable
 private fun MovieList(viewModel: MovieScreenViewModel){
-    Column {
-        Text(text = "ShowListOfMovie")
-        Button(onClick = {
-            Log.d("MyLog", "Click")
-            viewModel.obtainEvent(event = MovieNetworkScreenEvent.NavigateToDetails(-1)) }
+    Netflix_ComposeTheme {
+        val navController = rememberNavController()
+        Scaffold(
+//            bottomBar = {
+//                BottomNavigationBar(
+//                    items = listOf(
+//                        BottomNavItem(
+//                            "Home",
+//                            HomeScreen.Movie.route,
+//
+//                        )
+//                    ),
+//                    navController = navController,
+//                    onClick = {} )
+//            }
         ) {
-            Text(text = "Navigate to Eror")
+            
         }
     }
 }

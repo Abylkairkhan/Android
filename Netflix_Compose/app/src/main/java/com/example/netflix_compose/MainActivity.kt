@@ -3,15 +3,16 @@ package com.example.netflix_compose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.navigation.compose.rememberNavController
+import com.example.netflix_compose.navigation.graphs.Navigation
 import com.example.netflix_compose.ui.theme.Netflix_ComposeTheme
-import com.example.netflix_compose.navigation.Navigation
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             Netflix_ComposeTheme {
-                Navigation()
+                Navigation(navController = rememberNavController())
             }
         }
     }

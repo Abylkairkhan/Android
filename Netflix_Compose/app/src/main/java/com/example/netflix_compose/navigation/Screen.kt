@@ -1,12 +1,21 @@
 package com.example.netflix_compose.navigation
 
-sealed class Screen(val route: String){
+sealed class AuthScreen(val route: String){
+    object Login: AuthScreen("login_screen")
 
-    object LoginScreen: Screen("login_screen")
+    object Register: AuthScreen("register_screen")
 
-    object RegisterScreen: Screen("register_screen")
+    object Forgot: AuthScreen("forgot_screen")
+}
 
-    object MovieNetworkScreen: Screen("movie_network_screen")
+sealed class HomeScreen(val route: String){
+    object Movie: AuthScreen("movie_screen")
+    object Saved: AuthScreen("saved_screen")
+    object Profile: AuthScreen("profile_screen")
+    object Detail: AuthScreen("details_screen")
+}
 
-    object MovieSavedScreen: Screen("movie_saved_screen")
+sealed class DetailScreen(val route: String){
+    object Information : DetailScreen(route = "Information_screen")
+    object Overview : DetailScreen(route = "Overview_screen")
 }

@@ -1,9 +1,9 @@
 package com.example.netflix_compose.screens.NetworkMovieScreen
 
 import android.util.Log
-import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
-import com.example.netflix_compose.screens.models.*
+import com.example.netflix_compose.EventHandler
+import com.example.netflix_compose.screens.Additional.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -15,7 +15,6 @@ class MovieScreenViewModel: ViewModel(), EventHandler<MovieNetworkScreenEvent> {
     override fun obtainEvent(event: MovieNetworkScreenEvent) {
         when(val currentState = _movieViewState.value){
             is MovieNetworkScreenState.ShowProgressBar -> {
-                Log.d("MyLog", "ShowProgressBarViewModel")
                 reduce(event, currentState)
             }
 
@@ -44,7 +43,6 @@ class MovieScreenViewModel: ViewModel(), EventHandler<MovieNetworkScreenEvent> {
     private fun reduce(event: MovieNetworkScreenEvent, oldState: MovieNetworkScreenState.ShowProgressBar){
         when(event){
             is MovieNetworkScreenEvent.NavigateToDetails -> {
-                Log.d("MyLog", "NavigateToDetails")
                 fetchMovie(flag = true, id = event.id)
             }
             else -> {}

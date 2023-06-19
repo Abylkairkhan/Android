@@ -23,13 +23,15 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.netflix_compose.R
-import com.example.netflix_compose.navigation.Screen
+import com.example.netflix_compose.navigation.AuthScreen
+import com.example.netflix_compose.navigation.HomeScreen
+import com.example.netflix_compose.navigation.graphs.Graph
 import com.example.netflix_compose.ui.theme.Netflix_ComposeTheme
 
 @Composable
 fun LoginScreen(
     navController: NavController,
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ){
     Netflix_ComposeTheme {
         Column(
@@ -116,6 +118,7 @@ fun LoginScreen(
                         Icon(
                             painter = icon,
                             contentDescription = "Password Visibility Icon",
+                            tint = MaterialTheme.colorScheme.onPrimary,
                             modifier = modifier
                                 .size(100.dp)
                                 .padding(
@@ -150,10 +153,64 @@ fun LoginScreen(
             )
             Button(
                 onClick = {
-                    navController.navigate(Screen.MovieNetworkScreen.route)
-                }
+                    navController.popBackStack()
+                    navController.navigate(Graph.HOME)
+                },
+                elevation = ButtonDefaults.buttonElevation(0.dp),
+                contentPadding = PaddingValues(20.dp, 12.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.surface
+                ),
+                modifier = modifier
+                    .padding(20.dp)
+                    .width(200.dp)
             ){
-                Text(text = "Go Next")
+                Text(
+                    text = "Next",
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    fontSize = 21.sp,
+                )
+            }
+            Button(
+                onClick = {
+                    navController.navigate(AuthScreen.Register.route)
+                },
+                elevation = ButtonDefaults.buttonElevation(0.dp),
+                contentPadding = PaddingValues(20.dp, 12.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.surface
+                ),
+                modifier = modifier
+                    .padding(20.dp)
+                    .width(200.dp)
+            ){
+                Text(
+                    text = "Register",
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    fontSize = 21.sp,
+                )
+            }
+            Button(
+                onClick = {
+                    navController.navigate(AuthScreen.Forgot.route)
+                },
+                elevation = ButtonDefaults.buttonElevation(0.dp),
+                contentPadding = PaddingValues(20.dp, 12.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.surface
+                ),
+                modifier = modifier
+                    .padding(20.dp)
+                    .width(200.dp)
+            ){
+                Text(
+                    text = "Forgot",
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    fontSize = 21.sp,
+                )
             }
         }
     }

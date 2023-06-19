@@ -1,6 +1,4 @@
-package com.example.netflix_compose.screens.models
-
-import com.example.netflix.models.Movie
+package com.example.netflix_compose.screens.Additional
 
 sealed class MovieNetworkScreenState{
     object ShowProgressBar: MovieNetworkScreenState()
