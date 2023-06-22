@@ -1,6 +1,5 @@
-package com.example.netflix_compose.screens.HomeScreen
+package com.example.netflix_compose.screens.SavedScreen
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,28 +21,26 @@ import coil.compose.AsyncImage
 import com.example.netflix.models.Movie
 import com.example.netflix_compose.Credentials
 import com.example.netflix_compose.R
-import com.example.netflix_compose.navigation.HomeScreen
+import com.example.netflix_compose.screens.DetailsScreen.DetailState
+import com.example.netflix_compose.screens.DetailsScreen.DetailViewModel
+import com.example.netflix_compose.screens.HomeScreen.*
 import com.example.netflix_compose.ui.theme.Netflix_ComposeTheme
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun HomeScreen(
-    modifier: Modifier = Modifier,
-    navController: NavController,
-) {
+fun SavedScreen(
+    navController: NavController
+){
     Netflix_ComposeTheme {
-        val viewModel = getViewModel<HomeViewModel>()
+        val viewModel = getViewModel<SavedViewModel>()
         val state by viewModel.state.collectAsState()
 
         when (state) {
-            is HomeState.Empty -> Unit
-            is HomeState.ShowProgress -> showProgressBar()
-            is HomeState.ShowMovies -> showMovie(
-                (state as HomeState.ShowMovies).movies,
-                viewModel,
-                navController
-            )
-            is HomeState.ShowError -> showError((state as HomeState.ShowError).error)
+            is SavedState.Empty -> Unit
+            is SavedState.ShowMovies -> showMovie(
+                list = (state as SavedState.ShowMovies).movies,
+                viewModel = viewModel,
+                navController = navController)
         }
     }
 }
@@ -51,7 +48,7 @@ fun HomeScreen(
 @Composable
 fun showMovie(
     list: List<Movie>,
-    viewModel: HomeViewModel,
+    viewModel: SavedViewModel,
     navController: NavController
 ) {
     Netflix_ComposeTheme {
@@ -62,7 +59,7 @@ fun showMovie(
         ) {
             itemsIndexed(list) { index, item ->
                 if (index >= list.size - 4) {
-                    viewModel.obtainEvent(HomeEvent.LoadNextMovies)
+//                    viewModel.obtainEvent(SavedEvent)
                 }
                 Box(
                     modifier = Modifier
@@ -77,7 +74,7 @@ fun showMovie(
 
 @Composable
 fun Item(
-    viewModel: HomeViewModel,
+    viewModel: SavedViewModel,
     item: Movie,
     navController: NavController
 ) {
@@ -152,48 +149,6 @@ fun Item(
     }
 }
 
-private fun onClick(viewModel: HomeViewModel, item: Movie, navController: NavController) {
-    viewModel.obtainEvent(HomeEvent.DetailsEvent(item.id!!, navController, false))
-}
-
-
-@Composable
-fun showProgressBar(
-    modifier: Modifier = Modifier
-) {
-    Netflix_ComposeTheme {
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = modifier
-                .fillMaxSize()
-        ) {
-            CircularProgressIndicator(
-                modifier = modifier
-                    .size(50.dp)
-            )
-        }
-    }
-}
-
-@Composable
-fun showError(
-    error: Exception,
-    modifier: Modifier = Modifier
-) {
-    Netflix_ComposeTheme {
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = modifier
-                .fillMaxSize()
-        ) {
-            Text(
-                text = error.message ?: error.localizedMessage,
-                modifier = modifier,
-                color = MaterialTheme.colorScheme.error,
-                fontSize = 20.sp
-            )
-        }
-    }
+private fun onClick(viewModel: SavedViewModel, item: Movie, navController: NavController) {
+    viewModel.obtainEvent(SavedEvent.DetailsEvent(item.id!!, navController, true))
 }

@@ -1,7 +1,9 @@
-package com.example.netflix_compose.screens
+package com.example.netflix_compose.screens.authentication
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
@@ -11,6 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -24,7 +27,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.netflix_compose.R
 import com.example.netflix_compose.navigation.AuthScreen
-import com.example.netflix_compose.navigation.HomeScreen
 import com.example.netflix_compose.navigation.graphs.Graph
 import com.example.netflix_compose.ui.theme.Netflix_ComposeTheme
 
@@ -32,7 +34,7 @@ import com.example.netflix_compose.ui.theme.Netflix_ComposeTheme
 fun LoginScreen(
     navController: NavController,
     modifier: Modifier = Modifier
-){
+) {
     Netflix_ComposeTheme {
         Column(
             modifier = modifier
@@ -45,16 +47,24 @@ fun LoginScreen(
             var username by remember { mutableStateOf("") }
             var password by remember { mutableStateOf("") }
             var passwordVisibility by remember { mutableStateOf(false) }
-            var icon = if(passwordVisibility) 
+            var icon = if (passwordVisibility)
                 painterResource(id = R.drawable.visibility)
             else
                 painterResource(id = R.drawable.visibility_off)
             val maxLength = 15
 
+            Image(
+                modifier = Modifier
+                    .width(390.dp)
+                    .padding(bottom = 30.dp),
+                painter = painterResource(id = R.drawable.netflix_logo),
+                contentDescription = "logo"
+            )
+
             OutlinedTextField(
                 value = username,
                 onValueChange = {
-                    if(maxLength >= it.length) username = it
+                    if (maxLength >= it.length) username = it
                 },
                 textStyle = TextStyle(
                     color = MaterialTheme.colorScheme.onPrimary,
@@ -64,7 +74,8 @@ fun LoginScreen(
                 label = {
                     Text(
                         text = "Username",
-                        color = MaterialTheme.colorScheme.onPrimary)
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
                 },
                 colors = OutlinedTextFieldDefaults.colors(
                     unfocusedBorderColor = MaterialTheme.colorScheme.onPrimary,
@@ -80,7 +91,8 @@ fun LoginScreen(
                             .padding(
                                 start = 5.dp,
                                 end = 5.dp
-                            ))
+                            )
+                    )
                 },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Ascii,
@@ -93,7 +105,7 @@ fun LoginScreen(
             OutlinedTextField(
                 value = password,
                 onValueChange = {
-                    if(maxLength >= it.length) password = it
+                    if (maxLength >= it.length) password = it
                 },
                 textStyle = TextStyle(
                     color = MaterialTheme.colorScheme.onPrimary,
@@ -103,7 +115,8 @@ fun LoginScreen(
                 label = {
                     Text(
                         text = "Password",
-                        color = MaterialTheme.colorScheme.onPrimary)
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
                 },
                 colors = OutlinedTextFieldDefaults.colors(
                     unfocusedBorderColor = MaterialTheme.colorScheme.onPrimary,
@@ -128,10 +141,10 @@ fun LoginScreen(
                         )
                     }
                 },
-                visualTransformation = if(passwordVisibility)
-                                            VisualTransformation.None
-                                        else
-                                            PasswordVisualTransformation(),
+                visualTransformation = if (passwordVisibility)
+                    VisualTransformation.None
+                else
+                    PasswordVisualTransformation(),
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Filled.Lock,
@@ -152,73 +165,44 @@ fun LoginScreen(
                 maxLines = 1
             )
             Button(
+                modifier = modifier
+                    .padding(20.dp)
+                    .width(200.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                ),
+                elevation = ButtonDefaults.buttonElevation(0.dp),
+                contentPadding = PaddingValues(20.dp, 12.dp),
                 onClick = {
                     navController.popBackStack()
                     navController.navigate(Graph.HOME)
                 },
-                elevation = ButtonDefaults.buttonElevation(0.dp),
-                contentPadding = PaddingValues(20.dp, 12.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    contentColor = MaterialTheme.colorScheme.surface
-                ),
-                modifier = modifier
-                    .padding(20.dp)
-                    .width(200.dp)
-            ){
+            ) {
                 Text(
-                    text = "Next",
+                    text = "Log In",
                     color = MaterialTheme.colorScheme.onPrimaryContainer,
                     fontSize = 21.sp,
                 )
             }
-            Button(
-                onClick = {
-                    navController.navigate(AuthScreen.Register.route)
-                },
-                elevation = ButtonDefaults.buttonElevation(0.dp),
-                contentPadding = PaddingValues(20.dp, 12.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    contentColor = MaterialTheme.colorScheme.surface
+            ClickableText(
+                modifier = Modifier,
+                text = AnnotatedString("Forgot your password?"),
+                style = TextStyle(
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    fontSize = 16.sp
                 ),
-                modifier = modifier
-                    .padding(20.dp)
-                    .width(200.dp)
-            ){
-                Text(
-                    text = "Register",
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    fontSize = 21.sp,
-                )
-            }
-            Button(
                 onClick = {
                     navController.navigate(AuthScreen.Forgot.route)
-                },
-                elevation = ButtonDefaults.buttonElevation(0.dp),
-                contentPadding = PaddingValues(20.dp, 12.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    contentColor = MaterialTheme.colorScheme.surface
-                ),
-                modifier = modifier
-                    .padding(20.dp)
-                    .width(200.dp)
-            ){
-                Text(
-                    text = "Forgot",
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    fontSize = 21.sp,
-                )
-            }
+                }
+            )
         }
     }
 }
 
 @Preview
 @Composable
-fun LoginScreenPreview(){
+fun LoginScreenPreview() {
     val navController = rememberNavController()
     LoginScreen(navController = navController, Modifier)
 }

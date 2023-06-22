@@ -1,17 +1,14 @@
 package com.example.netflix_compose.navigation.graphs
 
-import android.util.Log
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.netflix.request.Service
-import com.example.netflix_compose.navigation.DetailScreen
 import com.example.netflix_compose.navigation.HomeScreen
 import com.example.netflix_compose.screens.DetailsScreen.DetailScreen
 import com.example.netflix_compose.screens.HomeScreen.HomeScreen
-import com.example.netflix_compose.screens.HomeScreen.HomeViewModel
+import com.example.netflix_compose.screens.SavedScreen.SavedScreen
 
 @Composable
 fun HomeNavGraph(
@@ -24,30 +21,35 @@ fun HomeNavGraph(
         startDestination = HomeScreen.Movie.route){
         composable(route = HomeScreen.Movie.route){
             HomeScreen(
-                navController = navHostController,
-                viewModel = HomeViewModel()
+                navController = navHostController
             )
         }
 
         composable(
-            route = HomeScreen.Detail.route + "/{id}",
+            route = HomeScreen.Detail.route + "/{id}" + "/{type}",
             arguments = listOf(
                 navArgument("id"){
                     type = NavType.IntType
+                },
+                navArgument("type"){
+                    type = NavType.BoolType
                 }
             )
         ){
-            it.arguments?.getInt("id")?.let { it1 -> DetailScreen(movie_id = it1) }
+            var id = it.arguments?.getInt("id")
+            var type = it.arguments?.getBoolean("type")
+            if (id != null && type != null) {
+                DetailScreen(movie_id = id, navController = navHostController, type = type!!)
+            }
         }
 
         composable(route = HomeScreen.Saved.route){
-            Text(text = "HomeScreen.Saved")
+            SavedScreen(navController = navHostController)
         }
 
         composable(route = HomeScreen.Profile.route){
             Text(text = "HomeScreen.Profile")
         }
-
     }
 }
 

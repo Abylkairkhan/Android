@@ -68,6 +68,7 @@ dependencies {
     def koin_version = "3.4.2"
     implementation "io.insert-koin:koin-core:$koin_version"
     implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-androidx-compose:$koin_version"
 
 //    Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"

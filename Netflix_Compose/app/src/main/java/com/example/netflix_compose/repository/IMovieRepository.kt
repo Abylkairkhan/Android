@@ -9,8 +9,11 @@ interface IMovieRepository {
 
     suspend fun getMovieByID(id: Int): Movie
 
-    fun getSavedMovie(context: Context): List<Movie>
+    fun getSavedMovie(): List<Movie>
 
     fun getSavedMovieByID(id: Int): Movie
 
+    fun deleteSavedMovieByID(id: Int)
+
+    fun insertMovieToDatabase(movie: Movie)
 }

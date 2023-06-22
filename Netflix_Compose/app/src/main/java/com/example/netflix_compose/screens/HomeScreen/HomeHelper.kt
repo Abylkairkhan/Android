@@ -1,13 +1,18 @@
 package com.example.netflix_compose.screens.HomeScreen
 
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.netflix.models.Movie
 
 sealed class HomeState{
-    object showProgres: HomeState()
-    data class showMovies(var movies: List<Movie>): HomeState()
-    data class showError(var error: Exception): HomeState()
+    object Empty: HomeState()
+    object ShowProgress: HomeState()
+    data class ShowMovies(var movies: List<Movie>): HomeState()
+    data class ShowError(var error: Exception): HomeState()
 }
 
 sealed class HomeEvent{
-    data class detailsEvent(var movie_id: Int): HomeEvent()
+
+    object LoadNextMovies: HomeEvent()
+    data class DetailsEvent(var movie_id: Int, var navController: NavController, var type: Boolean): HomeEvent()
 }

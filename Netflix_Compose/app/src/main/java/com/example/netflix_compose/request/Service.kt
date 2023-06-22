@@ -8,22 +8,24 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class Service() {
+class Service(
+    private val movieAPI: MovieAPI
+) {
 
-    private val retrofit = Retrofit.Builder()
-        .baseUrl(Credentials.BASE_URL)
-        .client(getClient())
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-    private val movieAPI: MovieAPI = retrofit.create(MovieAPI::class.java)
-
-    private fun getClient(): OkHttpClient {
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        return OkHttpClient.Builder()
-                .addInterceptor(interceptor)
-                .build()
-    }
+//    private val retrofit = Retrofit.Builder()
+//        .baseUrl(Credentials.BASE_URL)
+//        .client(getClient())
+//        .addConverterFactory(GsonConverterFactory.create())
+//        .build()
+//    private val movieAPI: MovieAPI = retrofit.create(MovieAPI::class.java)
+//
+//    private fun getClient(): OkHttpClient {
+//        val interceptor = HttpLoggingInterceptor()
+//        interceptor.level = HttpLoggingInterceptor.Level.BODY
+//        return OkHttpClient.Builder()
+//                .addInterceptor(interceptor)
+//                .build()
+//    }
 
     suspend fun getMovieByID(id: Int): Movie {
         val movie = movieAPI.getMovieByID(id)

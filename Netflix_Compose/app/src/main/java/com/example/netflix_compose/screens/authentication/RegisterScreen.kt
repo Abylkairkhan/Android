@@ -1,4 +1,4 @@
-package com.example.netflix_compose.screens.LoginScreen
+package com.example.netflix_compose.screens.authentication
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

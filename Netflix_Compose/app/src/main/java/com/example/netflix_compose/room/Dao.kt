@@ -13,6 +13,9 @@ interface Dao {
     @Query("SELECT * FROM movie_table")
     fun getMovies(): List<Movie>
 
+    @Query("SELECT * FROM movie_table WHERE id = :id")
+    fun getMovieByID(id: Int): Movie
+
     @Query("DELETE FROM movie_table WHERE id = :id")
     fun deleteMovieByID(id: Int)
 

@@ -1,10 +1,8 @@
-package com.example.netflix_compose.screens.DetailsScreen
+package com.example.netflix_compose
 
-import android.util.Log
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
+import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -17,119 +15,105 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
+import androidx.compose.ui.viewinterop.AndroidView
 import coil.compose.AsyncImage
-import coil.compose.rememberAsyncImagePainter
+import coil.compose.rememberImagePainter
 import com.example.netflix.models.Movie
-import com.example.netflix_compose.Credentials
-import com.example.netflix_compose.R
-import com.example.netflix_compose.screens.HomeScreen.*
-import com.example.netflix_compose.ui.theme.Netflix_ComposeTheme
-import org.koin.androidx.compose.getViewModel
 import kotlin.math.roundToInt
-import com.example.netflix_compose.screens.DetailsScreen.*
+
+@Preview
+@Composable
+fun Preview() {
+    test()
+}
 
 @Composable
-fun DetailScreen(
-    movie_id: Int,
-    navController: NavController,
-    type: Boolean
-) {
-
-    val viewModel = getViewModel<DetailViewModel>()
-    val scroll: ScrollState = rememberScrollState(0)
-    val state by viewModel.state.collectAsState()
-
-    viewModel.obtainEvent(DetailEvent.WaitMovie(movie_id, type))
-
-    Netflix_ComposeTheme {
-        when (state) {
-            is DetailState.Empty -> Unit
-            is DetailState.ShowProgress -> showProgressBar()
-            is DetailState.ShowMovie -> ShowDetails(
-                scroll = scroll,
-                movie = (state as DetailState.ShowMovie).movie,
-                viewModel = viewModel,
-                navController = navController,
-                type = type
+fun test() {
+    AndroidView(factory = {
+        WebView(it).apply {
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
             )
-            is DetailState.ShowError -> {
-
-            }
+            webViewClient = WebViewClient()
+            loadUrl("https://developer.themoviedb.org/reference/movie-videos")
         }
-    }
+    }, update = {
+        it.loadUrl("https://developer.themoviedb.org/reference/movie-videos")
+    })
 }
 
 @Composable
-fun ShowDetails(
-    scroll: ScrollState,
-    movie: Movie,
-    viewModel: DetailViewModel,
-    navController: NavController,
-    type: Boolean
-) {
-    Column(
+fun BlurredAsyncImage(url: String) {
+
+    Box(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxHeight()
     ) {
-        Box(
+        val painter = rememberImagePainter(
+            data = url,
+            builder = {
+                transformations()
+            }
+        )
+
+        Image(
+            painter = painter,
+            contentDescription = null,
             modifier = Modifier
-                .fillMaxSize()
-        ) {
-            Header(movie)
-            Body(scroll, movie, viewModel, type)
-            Toolbar(scroll, movie, viewModel, navController)
-        }
+                .fillMaxWidth()
+                .blur(radius = 20.dp)
+        )
     }
 }
 
+//BlurredAsyncImage(url = Credentials.IMAGE_URL.plus("/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg"))
+
+
 @Composable
-fun Header(movie: Movie) {
+fun Header() {
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .height(620.dp)
-            .background(Color.White)
+            .background(Color.Green)
     ) {
-        Image(
-            painter = rememberAsyncImagePainter(
-                model = Credentials.IMAGE_URL.plus(movie.poster_path)
-            ),
+        AsyncImage(
+            model = Credentials.IMAGE_URL.plus("/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg"),
             contentDescription = "ImageBlur",
             modifier = Modifier
                 .fillMaxWidth()
                 .height(650.dp)
-                .blur(64.dp)
+                .blur(15.dp),
         )
         Box(
             modifier = Modifier
                 .align(Alignment.Center)
         ) {
-            AsyncImage(
-                modifier = Modifier
-                    .width(320.dp)
-                    .height(520.dp),
-                model = Credentials.IMAGE_URL.plus(movie.poster_path),
-                contentDescription = null
-            )
+//            AsyncImage(
+//                modifier = Modifier
+//                    .width(320.dp)
+//                    .height(520.dp),
+//                model = Credentials.IMAGE_URL.plus("/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg"),
+//                contentDescription = null
+//            )
         }
     }
 }
 
+
 @Composable
-fun Body(scroll: ScrollState, movie: Movie, viewModel: DetailViewModel, type: Boolean) {
+fun Test(scroll: ScrollState) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scroll),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(
-            modifier = Modifier
-                .height(580.dp)
-        )
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
@@ -141,7 +125,7 @@ fun Body(scroll: ScrollState, movie: Movie, viewModel: DetailViewModel, type: Bo
                 modifier = Modifier
                     .width(350.dp)
                     .padding(top = 40.dp),
-                text = movie.title,
+                text = "Spider-Man: Across the Spider-Verse",
                 fontSize = 32.sp,
                 lineHeight = 32.sp,
                 fontWeight = FontWeight.ExtraBold,
@@ -151,7 +135,7 @@ fun Body(scroll: ScrollState, movie: Movie, viewModel: DetailViewModel, type: Bo
                 modifier = Modifier
                     .padding(top = 5.dp)
             ) {
-                val rounded = (movie.vote_average * 100.0).roundToInt() / 100.0
+                val rounded = (8.698 * 100.0).roundToInt() / 100.0
                 Text(
                     text = rounded.toString(),
                     fontSize = 19.sp,
@@ -168,7 +152,7 @@ fun Body(scroll: ScrollState, movie: Movie, viewModel: DetailViewModel, type: Bo
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
                         .padding(horizontal = 4.dp),
-                    text = movie.original_title,
+                    text = "Spider-Man: Across the Spider-Verse",
                     fontWeight = FontWeight.W400
                 )
             }
@@ -176,21 +160,21 @@ fun Body(scroll: ScrollState, movie: Movie, viewModel: DetailViewModel, type: Bo
                 modifier = Modifier
             ) {
                 Text(
-                    text = movie.release_date + ",",
+                    text = "2023-05-31" + ",",
                     fontSize = 14.sp,
                     fontWeight = FontWeight.W400,
                     color = MaterialTheme.colorScheme.outline
                 )
 
-                val list = movie.genres
+                val list = listOf("Anime", "Anime", "Anime")
                 Row {
                     for (index in 0..list.size) {
-                        if (index < 3 && index < list.size) {
+                        if (index < 3) {
                             Text(
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically)
                                     .padding(start = 5.dp),
-                                text = list[index].name + ",",
+                                text = list[index] + ",",
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.W400,
                                 color = MaterialTheme.colorScheme.outline
@@ -200,10 +184,10 @@ fun Body(scroll: ScrollState, movie: Movie, viewModel: DetailViewModel, type: Bo
                 }
             }
             Row {
-                val hour = movie.runtime / 60
-                val minutes = movie.runtime % 60
+                val hour = 140 / 60
+                val minutes = 140 % 60
                 Text(
-                    text = movie.original_language.uppercase() + ",",
+                    text = "EN" + ",",
                     fontSize = 14.sp,
                     fontWeight = FontWeight.W400,
                     color = MaterialTheme.colorScheme.outline
@@ -219,7 +203,7 @@ fun Body(scroll: ScrollState, movie: Movie, viewModel: DetailViewModel, type: Bo
                 Text(
                     modifier = Modifier
                         .padding(start = 3.dp),
-                    text = if (movie.adult) "18+" else "6+",
+                    text = "6+",
                     fontSize = 14.sp,
                     fontWeight = FontWeight.W400,
                     color = MaterialTheme.colorScheme.outline
@@ -249,77 +233,65 @@ fun Body(scroll: ScrollState, movie: Movie, viewModel: DetailViewModel, type: Bo
                     fontWeight = FontWeight.W500
                 )
             }
+//            ----------------------------------------------
 
             Row(
-                modifier = Modifier,
+                modifier = Modifier
+                    .padding(top = 10.dp),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
 
                 Column(
-                    verticalArrangement = Arrangement.Top,
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    verticalArrangement = Arrangement.Center
                 ) {
                     IconButton(
-                        modifier = Modifier
-                            .padding(0.dp),
-                        onClick = {
-                            if (!type) viewModel.obtainEvent(DetailEvent.SaveMovie(movie))
-                            else viewModel.obtainEvent(DetailEvent.DeleteMovie(movie))
-                        }
+                        modifier = Modifier,
+                        onClick = { /*TODO*/ }
                     ) {
                         Icon(
                             painter = painterResource(
-                                 id = if (!type) R.drawable.icon_bookmark_add else R.drawable.icon_delete
+                                id = R.drawable.icon_bookmark_add
                             ),
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
                             contentDescription = null,
+                            modifier = Modifier
                         )
                     }
                     Text(
-                        modifier = Modifier,
-                        text = if (!type) "Save" else "Delete",
-                        fontSize = 11.sp,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        text = "Save",
                         textAlign = TextAlign.Center,
                     )
                 }
 
                 Column(
-                    verticalArrangement = Arrangement.Top,
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    verticalArrangement = Arrangement.Center
                 ) {
                     IconButton(
-                        modifier = Modifier
-                            .padding(0.dp),
+                        modifier = Modifier,
                         onClick = { /*TODO*/ }
                     ) {
                         Icon(
                             painter = painterResource(
                                 id = R.drawable.icon_share
                             ),
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
                             contentDescription = null,
+                            modifier = Modifier
                         )
                     }
                     Text(
                         modifier = Modifier,
-                        text = "Share",
-                        fontSize = 11.sp,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        textAlign = TextAlign.Center,
+                        text = "Share"
                     )
                 }
             }
-
             var isExpanded by remember { mutableStateOf(false) }
             Column(
                 modifier = Modifier
-                    .padding(top = 20.dp, start = 20.dp, end = 20.dp)
+                    .padding(top = 20.dp, start = 20.dp)
             ) {
                 Text(
                     modifier = Modifier,
-                    text = movie.overview,
+                    text = "After reuniting with Gwen Stacy, Brooklyn’s full-time, friendly neighborhood Spider-Man is catapulted across the Multiverse, where he encounters the Spider Society, a team of Spider-People charged with protecting the Multiverse’s very existence. But when the heroes clash on how to handle a new threat, Miles finds himself pitted against the other Spiders and must set out on his own to save those he loves most.",
                     maxLines = if (!isExpanded) 4 else Int.MAX_VALUE
                 )
                 TextButton(
@@ -334,81 +306,6 @@ fun Body(scroll: ScrollState, movie: Movie, viewModel: DetailViewModel, type: Bo
                     )
                 }
             }
-
-            Spacer(
-                modifier = Modifier
-                    .height(300.dp)
-            )
         }
-    }
-}
-
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun Toolbar(
-    scroll: ScrollState,
-    movie: Movie,
-    viewModel: DetailViewModel,
-    navController: NavController
-) {
-
-    val toolbarBottom = 1440.dp
-    val showToolBar by remember {
-        derivedStateOf {
-            scroll.value >= toolbarBottom.value
-        }
-    }
-
-    AnimatedVisibility(
-        visible = showToolBar,
-        enter = fadeIn(animationSpec = tween(300)),
-        exit = fadeOut(animationSpec = tween(300))
-    ) {
-        TopAppBar(
-            colors = TopAppBarDefaults.smallTopAppBarColors(
-                containerColor = MaterialTheme.colorScheme.background
-            ),
-            modifier = Modifier
-                .background(Color.Red)
-                .height(60.dp),
-            navigationIcon = {
-                Column(
-                    modifier = Modifier
-                        .fillMaxHeight(),
-                    verticalArrangement = Arrangement.Center
-                ) {
-
-                    IconButton(
-                        modifier = Modifier,
-                        onClick = {
-                            viewModel.obtainEvent(DetailEvent.NavigateBack(navController))
-                        }
-                    ) {
-                        Icon(
-                            modifier = Modifier
-                                .size(30.dp),
-                            painter = painterResource(id = R.drawable.icon_arrowback),
-                            contentDescription = null,
-                        )
-                    }
-                }
-            },
-            title = {
-                Column(
-                    modifier = Modifier
-                        .fillMaxHeight(),
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Text(
-                        modifier = Modifier,
-                        text = movie.title,
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.W500,
-                        maxLines = 1
-                    )
-                }
-            },
-        )
     }
 }

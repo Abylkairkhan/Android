@@ -5,9 +5,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.netflix_compose.navigation.AuthScreen
-import com.example.netflix_compose.screens.LoginScreen
-import com.example.netflix_compose.screens.LoginScreen.ForgotScreen
-import com.example.netflix_compose.screens.LoginScreen.RegisterScreen
+import com.example.netflix_compose.screens.authentication.LoginScreen
+import com.example.netflix_compose.screens.authentication.ForgotScreen
+import com.example.netflix_compose.screens.authentication.RegisterScreen
 
 fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
 
