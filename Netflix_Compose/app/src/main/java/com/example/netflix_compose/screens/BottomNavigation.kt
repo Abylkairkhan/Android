@@ -1,5 +1,6 @@
 package com.example.netflix_compose.screens.HomeScreen
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.icons.Icons
@@ -22,6 +23,7 @@ import com.example.netflix_compose.models.BottomNavItem
 import com.example.netflix_compose.navigation.HomeScreen
 import com.example.netflix_compose.navigation.graphs.HomeNavGraph
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun BottomNavigation(
     navController: NavHostController = rememberNavController()) {

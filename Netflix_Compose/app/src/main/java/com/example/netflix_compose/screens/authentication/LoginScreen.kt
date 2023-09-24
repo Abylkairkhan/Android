@@ -47,7 +47,7 @@ fun LoginScreen(
             var username by remember { mutableStateOf("") }
             var password by remember { mutableStateOf("") }
             var passwordVisibility by remember { mutableStateOf(false) }
-            var icon = if (passwordVisibility)
+            val icon = if (passwordVisibility)
                 painterResource(id = R.drawable.visibility)
             else
                 painterResource(id = R.drawable.visibility_off)
@@ -200,9 +200,9 @@ fun LoginScreen(
     }
 }
 
-@Preview
-@Composable
-fun LoginScreenPreview() {
-    val navController = rememberNavController()
-    LoginScreen(navController = navController, Modifier)
-}
+    @Preview
+    @Composable
+    fun LoginScreenPreview() {
+        val navController = rememberNavController()
+        LoginScreen(navController = navController, Modifier)
+    }

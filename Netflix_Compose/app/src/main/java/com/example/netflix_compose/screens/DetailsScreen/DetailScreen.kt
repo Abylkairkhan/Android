@@ -1,12 +1,13 @@
 package com.example.netflix_compose.screens.DetailsScreen
 
-import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -25,11 +26,12 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.netflix.models.Movie
 import com.example.netflix_compose.Credentials
 import com.example.netflix_compose.R
+import com.example.netflix_compose.models.Cast
+import com.example.netflix_compose.screens.DetailsScreen.*
 import com.example.netflix_compose.screens.HomeScreen.*
 import com.example.netflix_compose.ui.theme.Netflix_ComposeTheme
 import org.koin.androidx.compose.getViewModel
 import kotlin.math.roundToInt
-import com.example.netflix_compose.screens.DetailsScreen.*
 
 @Composable
 fun DetailScreen(
@@ -51,6 +53,7 @@ fun DetailScreen(
             is DetailState.ShowMovie -> ShowDetails(
                 scroll = scroll,
                 movie = (state as DetailState.ShowMovie).movie,
+                cast = (state as DetailState.ShowMovie).cast!!,
                 viewModel = viewModel,
                 navController = navController,
                 type = type
@@ -63,9 +66,24 @@ fun DetailScreen(
 }
 
 @Composable
+fun Item(person: Cast){
+    Text(text = person.name)
+}
+
+@Composable
+fun MovieCast(cast: List<Cast>){
+    LazyRow(){
+        itemsIndexed(cast) { index, item ->
+            Item(person = cast[index])
+        }
+    }
+}
+
+@Composable
 fun ShowDetails(
     scroll: ScrollState,
     movie: Movie,
+    cast: List<Cast>,
     viewModel: DetailViewModel,
     navController: NavController,
     type: Boolean
@@ -79,7 +97,7 @@ fun ShowDetails(
                 .fillMaxSize()
         ) {
             Header(movie)
-            Body(scroll, movie, viewModel, type)
+            Body(scroll, movie, viewModel, type, cast)
             Toolbar(scroll, movie, viewModel, navController)
         }
     }
@@ -119,7 +137,13 @@ fun Header(movie: Movie) {
 }
 
 @Composable
-fun Body(scroll: ScrollState, movie: Movie, viewModel: DetailViewModel, type: Boolean) {
+fun Body(
+    scroll: ScrollState,
+    movie: Movie,
+    viewModel: DetailViewModel,
+    type: Boolean,
+    castList: List<Cast>
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -270,7 +294,7 @@ fun Body(scroll: ScrollState, movie: Movie, viewModel: DetailViewModel, type: Bo
                     ) {
                         Icon(
                             painter = painterResource(
-                                 id = if (!type) R.drawable.icon_bookmark_add else R.drawable.icon_delete
+                                id = if (!type) R.drawable.icon_bookmark_add else R.drawable.icon_delete
                             ),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant,
                             contentDescription = null,
@@ -334,6 +358,8 @@ fun Body(scroll: ScrollState, movie: Movie, viewModel: DetailViewModel, type: Bo
                     )
                 }
             }
+
+            MovieCast(cast = castList)
 
             Spacer(
                 modifier = Modifier
@@ -412,3 +438,4 @@ fun Toolbar(
         )
     }
 }
+

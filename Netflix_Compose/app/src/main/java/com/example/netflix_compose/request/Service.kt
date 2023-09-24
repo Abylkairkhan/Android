@@ -2,6 +2,7 @@ package com.example.netflix.request
 
 import com.example.netflix.models.Movie
 import com.example.netflix_compose.Credentials
+import com.example.netflix_compose.models.Cast
 import com.example.netflix_compose.request.MovieAPI
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -26,6 +27,11 @@ class Service(
 //                .addInterceptor(interceptor)
 //                .build()
 //    }
+
+    suspend fun getCast(id: Int): List<Cast> {
+        val castList = movieAPI.getCharacters(id)
+        return castList.cast
+    }
 
     suspend fun getMovieByID(id: Int): Movie {
         val movie = movieAPI.getMovieByID(id)

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Kaspi</string>
+    <string name="kaspi_searchview_hint">Kaspi.kz ішінде іздеу</string>
+    <string name="calendar_data">11 қыркүйек - 1 қазан</string>
+</resources>

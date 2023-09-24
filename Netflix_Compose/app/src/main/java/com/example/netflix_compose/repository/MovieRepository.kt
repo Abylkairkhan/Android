@@ -3,6 +3,7 @@ package com.example.netflix_compose.repository
 import com.example.netflix.Room.Dao
 import com.example.netflix.models.Movie
 import com.example.netflix.request.Service
+import com.example.netflix_compose.models.Cast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -17,6 +18,13 @@ class MovieRepository(
     override suspend fun getPopularMovie(page: Int): List<Movie> {
         val deferred = GlobalScope.async(Dispatchers.Default) {
             service.getData(page)
+        }
+        return deferred.await()
+    }
+
+    override suspend fun getCastByID(id: Int): List<Cast> {
+        val deferred = GlobalScope.async(Dispatchers.Default) {
+            service.getCast(id)
         }
         return deferred.await()
     }

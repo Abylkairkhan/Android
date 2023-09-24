@@ -18,8 +18,9 @@ fun HomeNavGraph(
     NavHost(
         navController = navHostController,
         route = Graph.HOME,
-        startDestination = HomeScreen.Movie.route){
-        composable(route = HomeScreen.Movie.route){
+        startDestination = HomeScreen.Movie.route
+    ) {
+        composable(route = HomeScreen.Movie.route) {
             HomeScreen(
                 navController = navHostController
             )
@@ -28,14 +29,14 @@ fun HomeNavGraph(
         composable(
             route = HomeScreen.Detail.route + "/{id}" + "/{type}",
             arguments = listOf(
-                navArgument("id"){
+                navArgument("id") {
                     type = NavType.IntType
                 },
-                navArgument("type"){
+                navArgument("type") {
                     type = NavType.BoolType
                 }
             )
-        ){
+        ) {
             var id = it.arguments?.getInt("id")
             var type = it.arguments?.getBoolean("type")
             if (id != null && type != null) {
@@ -43,11 +44,11 @@ fun HomeNavGraph(
             }
         }
 
-        composable(route = HomeScreen.Saved.route){
+        composable(route = HomeScreen.Saved.route) {
             SavedScreen(navController = navHostController)
         }
 
-        composable(route = HomeScreen.Profile.route){
+        composable(route = HomeScreen.Profile.route) {
             Text(text = "HomeScreen.Profile")
         }
     }

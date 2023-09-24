@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SneakerStreet</string>
+    <string name="username">Электронная почта</string>
+    <string name="password">Пароль</string>
+    <string name="sign_in">Войти</string>
+    <string name="dont_have_account">У вас нету аккаунта?</string>
+    <string name="sign_up">Создать аккаунт</string>
+    <string name="already_have_account">У вас уже есть аккаунт?</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+    <string name="enter_your_username">Введите почту</string>
+    <string name="enter_your_password">Enter youre Password</string>
+    <string name="text_consist_only_a_Z">Ваше слово имеет @-%</string>
+    <string name="blank_email">Адрес электронной почты не может быть пустым.</string>
+    <string name="thats_not_valid_email">Это недействительный адрес электронной почты</string>
+    <string name="small_password">Пароль должен состоять как минимум из 8 символов</string>
+    <string name="password_error_digit_letter">Пароль должен содержать хотя бы одну букву и цифру</string>
+    <string name="password_dont_match">Пароли не совпадают</string>
+    <string name="error_invalid_email">Ваш адрес электронной почты имеет неверный формат</string>
+    <string name="error_wrong_password">Неверный пароль</string>
+    <string name="error_user_not_found">Пользователь с таким адресом электронной почты не существует</string>
+    <string name="error_user_disabled">Пользователь с этим адресом электронной почты отключен</string>
+    <string name="error_too_many_request">Слишком много запросов. Попробуйте позже</string>
+    <string name="error_not_allowed">Вход с использованием электронной почты и пароля не включен.</string>
+    <string name="error_already_in_use">Электронная почта уже зарегистрирована. Пожалуйста, войдите или сбросьте пароль</string>
+    <string name="error_undefined">Произошла неопределенная ошибка</string>
+    <string name="account_created">Аккаунт создан</string>
+    <string name="hello">Hello,</string>
+</resources>

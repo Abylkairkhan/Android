@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">SneakerStreet</string>
+    <string name="username">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="dont_have_account">Don\'t have account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_have_account">Already have account?</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="enter_your_username">Enter your Email</string>
+    <string name="enter_your_password">Enter your Password</string>
+    <string name="text_consist_only_a_Z">Your text contains @-%</string>
+    <string name="blank_email">The email can\'t be blank</string>
+    <string name="thats_not_valid_email">That\'s not a valid email</string>
+    <string name="small_password">The password needs to consist of at least 8 characters</string>
+    <string name="password_error_digit_letter">The password needs to contain at least one letter and digit</string>
+    <string name="password_dont_match">The passwords don\'t match</string>
+    <string name="error_invalid_email">Your email address appears to be malformed</string>
+    <string name="error_wrong_password">Your password is wrong</string>
+    <string name="error_user_not_found">User with this email doesn\'t exist</string>
+    <string name="error_user_disabled">User with this email has been disabled</string>
+    <string name="error_too_many_request">Too many requests. Try again later</string>
+    <string name="error_not_allowed">Signing in with Email and Password is not enabled</string>
+    <string name="error_already_in_use">The email has already been registered. Please login or reset your password</string>
+    <string name="error_undefined">An undefined Error happened</string>
+    <string name="account_created">Account created</string>
+    <string name="hello">Hello,</string>
+</resources>

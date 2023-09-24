@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SneakerStreet</string>
+    <string name="username">Электронды пошта</string>
+    <string name="password">Құпия сөз</string>
+    <string name="sign_in">Кіру</string>
+    <string name="dont_have_account">Аккаунтыңыз жоқ па?</string>
+    <string name="sign_up">Аккаунт ашу</string>
+    <string name="already_have_account">Сізде бұрыннан тіркелгенсіз ба?</string>
+    <string name="confirm_password">Құпия сөзді растау</string>
+    <string name="enter_your_username">Поштаны енгізіңіз</string>
+    <string name="enter_your_password">Құпия сөзді еңгізіңіз</string>
+    <string name="text_consist_only_a_Z">Сіздің сөзіңізде @-% бар</string>
+    <string name="blank_email">Электрондық пошта бос болмауы керек</string>
+    <string name="thats_not_valid_email">Бұл жарамды электрондық пошта емес</string>
+    <string name="small_password">Құпия сөз кемінде 8 таңбадан тұруы керек</string>
+    <string name="password_error_digit_letter">Құпия сөзде кемінде бір әріп пен сан болуы керек</string>
+    <string name="password_dont_match">Құпия сөздер сәйкес келмейді</string>
+    <string name="error_invalid_email">Еңгізілген электронды пошта дұрыс емес</string>
+    <string name="error_wrong_password">Құпия сөзіңіз дұрыс емес</string>
+    <string name="error_user_not_found">Бұл электрондық пошта тіркелмеген</string>
+    <string name="error_user_disabled">Пайдаланушының электрондық поштасы өшірілген</string>
+    <string name="error_too_many_request">Әрекетті кейінірек қайталаңыз</string>
+    <string name="error_not_allowed">Электрондық пошта және құпия сөз арқылы кіру мүмкін емес</string>
+    <string name="error_already_in_use">Электрондық пошта бұрыннан тіркелген. Жүйеге кіріңіз немесе құпия сөзіңізді қалпына келтіріңіз</string>
+    <string name="error_undefined">Анықталмаған қате орын алды</string>
+    <string name="account_created">Тіркелгі жасалды</string>
+    <string name="hello">Hello,</string>
+</resources>
